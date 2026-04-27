@@ -13,7 +13,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  /* -webkit-text-size-adjust: 100%; */
 }
 
 body {
@@ -27,6 +27,68 @@ body {
 main {
   flex-grow: 1;
 }
+
 main:has(.back-link) {
   text-align: center;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.feedback-form {
+
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 24px;
+  gap: 8px;
+  width: 371px;
+
+  margin-bottom: 8px;
+}
+
+input {
+  width: 272px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  outline: none;
+  padding: 8px 16px;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  transition: all 250ms ease-in-out;
+  height: 40px;
+}
+
+input:hover {
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+
+
+button {
+  border-radius: 8px;
+  padding-block: 8px;
+  padding-inline: 16px;
+  width: 91px;
+  height: 40px;
+  background-color: #4e75ff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  transition: background-color 250ms ease-in-out;
+
+}
+
+button:hover {
+  background-color: #6c8cff;
 }
