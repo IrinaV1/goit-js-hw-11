@@ -1,6 +1,15 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 export const list = document.querySelector('.gallery');
-export function createGallery(arr) {
-  return arr
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
+export function createGallery(images) {
+  const markup = images
     .map(
       item => `
       <li class="gallery-item">
@@ -9,15 +18,18 @@ export function createGallery(arr) {
         </a>
 
         <div class="info">
-          <p>Likes ${item.likes}</p>
-          <p>Views ${item.views}</p>
-          <p>Comments ${item.comments}</p>
-          <p>Downloads ${item.downloads}</p>
+          <p>Likes<span>${item.likes}</span></p>
+          <p>Views <span>${item.views}</span></p>
+          <p>Comments <span>${item.comments}</span></p>
+          <p>Downloads <span>${item.downloads}</span></p>
         </div>
       </li>
     `
     )
     .join('');
+
+  list.insertAdjacentHTML('beforeend', markup);
+  lightbox.refresh();
 }
 
 export function clearGallery() {
