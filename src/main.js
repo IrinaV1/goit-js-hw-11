@@ -2,7 +2,12 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { getImagesByQuery } from './js/pixabay-api';
-import { clearGallery, createGallery } from './js/render-functions';
+import {
+  clearGallery,
+  createGallery,
+  hideLoader,
+  showLoader,
+} from './js/render-functions';
 
 const form = document.querySelector('.form');
 
@@ -14,11 +19,9 @@ function handleFormClick(event) {
 
   const query = event.target.elements['search-text'].value.trim();
   if (!query) return;
-
-  console.log(query);
+  showLoader();
   getImagesByQuery(query)
     .then(data => {
-      console.log(query);
       if (data.length === 0) {
         iziToast.show({
           titleColor: 'white',
@@ -31,12 +34,20 @@ function handleFormClick(event) {
         });
         return;
       }
-
       createGallery(data);
     })
     .catch(() => {
-      alert('Something went wrong. Please try again later.');
+      iziToast.show({
+        titleColor: 'white',
+        position: 'topRight',
+        title: 'Error',
+        backgroundColor: 'red',
+        messageColor: 'white',
+        message: 'Something went wrong. Please try again later.',
+      });
+    })
+    .finally(() => {
+      hideLoader();
+      event.target.reset();
     });
-
-  event.target.reset();
 }
