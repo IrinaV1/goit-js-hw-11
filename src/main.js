@@ -23,7 +23,7 @@ function handleFormClick(event) {
 
   getImagesByQuery(query)
     .then(data => {
-      if (!data || data.length === 0) {
+      if (!data.length) {
         iziToast.show({
           titleColor: 'white',
           position: 'topRight',

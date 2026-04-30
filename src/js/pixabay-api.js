@@ -13,10 +13,7 @@ export function getImagesByQuery(query) {
         safesearch: true,
       },
     })
-    .then(response => {
-      // console.log(response.data.hits);
-      return response.data.hits;
-    });
+    .then(response => response.data.hits);
   // .catch(error => {
   //   return error.message;
   // });
