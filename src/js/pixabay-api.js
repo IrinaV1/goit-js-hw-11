@@ -14,10 +14,10 @@ export function getImagesByQuery(query) {
       },
     })
     .then(response => {
+      // console.log(response.data.hits);
       return response.data.hits;
-      console.log(response.data.hits);
-    })
-    .catch(error => {
-      console.log('Error fetching images:');
     });
+  // .catch(error => {
+  //   return error.message;
+  // });
 }

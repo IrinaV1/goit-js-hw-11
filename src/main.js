@@ -20,9 +20,10 @@ function handleFormClick(event) {
   const query = event.target.elements['search-text'].value.trim();
   if (!query) return;
   showLoader();
+
   getImagesByQuery(query)
     .then(data => {
-      if (data.length === 0) {
+      if (!data || data.length === 0) {
         iziToast.show({
           titleColor: 'white',
           position: 'topRight',
@@ -47,7 +48,7 @@ function handleFormClick(event) {
       });
     })
     .finally(() => {
-      hideLoader();
       event.target.reset();
+      hideLoader();
     });
 }
